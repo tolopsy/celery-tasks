@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'task_app',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CELERY_BEAT_SCHEDULE = {
+    "scheduled_task": {
+        "task": "task_app.tasks.add",
+        "schedule": 5.0,
+        "args": (10,34),
+    },
+}
